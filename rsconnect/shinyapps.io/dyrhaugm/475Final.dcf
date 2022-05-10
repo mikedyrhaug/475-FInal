@@ -1,0 +1,14 @@
+name: 475Final
+title: 475Final
+username:
+account: dyrhaugm
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 6272969
+bundleId: 5891807
+url: https://dyrhaugm.shinyapps.io/475Final/
+when: 1652200088.77573
+lastSyncTime: 1652200088.77573
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: geoMap.csv|README.md
