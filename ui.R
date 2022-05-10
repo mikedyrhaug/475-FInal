@@ -6,9 +6,11 @@ ui <- fluidPage(
           selectInput("radio", label = h3("Select which model you would like to see"), 
                       choices = list("General Search Trend" , "Classical Decomposition",
                                      "Seasonality", 'Autocorrelation', 'Forecast',
-                                     'Naive Model', 'Mean Model', 'Drift Model', 'Seasonal Naive'), 
+                                     'Naive Model', 'Mean Model', 'Drift Model', 'Seasonal Naive',
+                                     'Holts', 'Holts Winter'), 
                       selected = "General Search Trend"),
           
+        
           
       #   radioButtons("radio", label = h3("Choose a graph to show Mike Trout Search Stastistics"),
       #        choices = c("General Search Trend" , "Classical Decomposition", 

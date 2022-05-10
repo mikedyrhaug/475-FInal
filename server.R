@@ -70,6 +70,18 @@ server <- function(input, output){
         forecast(h= 12) %>% 
         autoplot(Trout)
     }
+    else if(input$radio == 'Holts'){
+      Trout %>% 
+        model(ETS(Score ~ error("A") + trend("A") + season("N"))) %>% 
+        forecast(h= 12) %>% 
+        autoplot(Trout)
+    }
+    else if(input$radio == 'Holts Winter'){
+      Trout %>% 
+        model(ETS(Score ~ error("A") + trend("A") + season("A"))) %>% 
+        forecast(h= 12) %>% 
+        autoplot(Trout)q
+    }
 }
     
 
