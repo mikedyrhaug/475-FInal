@@ -2,9 +2,11 @@
 titlePanel("Welcome to my shiny app! To use features, click below")
 
 ui <- fluidPage(
-          titlePanel("Welcome to my shiny app! To use features, click below"),
+          titlePanel("Welcome to my Mike Trout shiny app! Manipulate the dropdown tab to see which forecast/ chart you wish to view."),
           selectInput("radio", label = h3("Select which model you would like to see"), 
-                      choices = list("General Search Trend" , "Classical Decomposition", "Seasonality", 'Autocorrelation', 'Forecast'), 
+                      choices = list("General Search Trend" , "Classical Decomposition",
+                                     "Seasonality", 'Autocorrelation', 'Forecast',
+                                     'Naive Model', 'Mean Model', 'Drift Model', 'Seasonal Naive'), 
                       selected = "General Search Trend"),
           
           
@@ -15,7 +17,7 @@ ui <- fluidPage(
   hr(),
   plotOutput('Plot'),
   textOutput("text"),
-  fluidRow(column(3, verbatimTextOutput("value")))
+  fluidRow(column(8, verbatimTextOutput("value")))
   
   #titlePanel("")
 )

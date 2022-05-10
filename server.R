@@ -24,8 +24,8 @@ server <- function(input, output){
     else if(input$radio == 'Autocorrelation') {
     'This graph represents correlation. Because all the lag graphs have a positive linear in some sense (none of them are completely random, we can tell there is some correlation of when people are searching for Mike Trout, however because he is so good at baseball, people tend to search for him in multiple spikes during the year.'}
     else if(input$radio == 'Forecast'){
-      'This is the prediction of what the model believes will be his upcoming search results.'
-    }
+      'This is the prediction of what the model believes will be his upcoming search results.'}
+    else if(input$radio == 'Naive'){'This is the naive model'}
     })
   output$Plot <- renderPlot({
     if(input$radio == 'General Search Trend'){
@@ -46,8 +46,33 @@ server <- function(input, output){
       fit %>% 
         forecast() %>% 
         autoplot(Trout)}
-    
-   
+    else if(input$radio == 'Naive Model'){
+      Trout %>% 
+        model(NAIVE(Score)) %>%
+        forecast(h = 12) %>% 
+        autoplot(Trout)
+    }
+    else if(input$radio == 'Mean Model'){
+      Trout %>% 
+        model(MEAN(Score)) %>%
+        forecast(h = 12) %>% 
+        autoplot(Trout)
+    }
+    else if(input$radio == 'Drift Model'){
+      Trout %>% 
+        model(RW(Score ~ drift())) %>% 
+        forecast(h= 12) %>% 
+        autoplot(Trout)
+    }
+    else if(input$radio == 'Seasonal Naive'){
+      Trout %>% 
+        model(SNAIVE(Score ~ lag("year"))) %>% 
+        forecast(h= 12) %>% 
+        autoplot(Trout)
+    }
 }
+    
+
+
 )
 }
