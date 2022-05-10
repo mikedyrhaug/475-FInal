@@ -25,7 +25,20 @@ server <- function(input, output){
     'This graph represents correlation. Because all the lag graphs have a positive linear in some sense (none of them are completely random, we can tell there is some correlation of when people are searching for Mike Trout, however because he is so good at baseball, people tend to search for him in multiple spikes during the year.'}
     else if(input$radio == 'Forecast'){
       'This is the prediction of what the model believes will be his upcoming search results.'}
-    else if(input$radio == 'Naive'){'This is the naive model'}
+    else if(input$radio == 'Naive Model'){
+      'This is the naive model. This simply predicts the last value forever.'}
+    else if(input$radio == 'Mean Model'){
+      'This is the mean model. It takes the mean of thr entire graph and forecasts that it will hit the mean basically forever.'}
+    else if(input$radio == 'Drift Model'){
+      'This is the drift model. This simply predicts the last value forever, but with a drift implimented that is affected by the trend of the graph. You can barely see, but the trend is going upward compared to the naive model.'}
+    else if(input$radio == 'Seasonal Naive'){
+      'This is the seasonal naive model. Now it will forecast the last observed value from the previous season/ lag point.'}
+    else if(input$radio == 'Holts'){
+      'This model takes into the account the trend of the graph and predicts accordingly.'}
+    else if(input$radio == 'Holts Winter'){
+      'This model takes into the account the trend of the graph and also the seasonality. You can see the significant difference between this and the original Holts because of the seasonality is taken into consideration.'}
+    else if(input$radio == 'Arima'){
+      'The arima model tries to describe the autocorrelation in the data. It does this by reading into the trend, seasonality, and moving average.'}
     })
   output$Plot <- renderPlot({
     if(input$radio == 'General Search Trend'){
@@ -80,7 +93,13 @@ server <- function(input, output){
       Trout %>% 
         model(ETS(Score ~ error("A") + trend("A") + season("A"))) %>% 
         forecast(h= 12) %>% 
-        autoplot(Trout)q
+        autoplot(Trout)
+    }
+    else if(input$radio == 'Arima'){
+      Trout %>% 
+        model(ARIMA(Score)) %>% 
+        forecast(h= 12) %>% 
+        autoplot(Trout)
     }
 }
     

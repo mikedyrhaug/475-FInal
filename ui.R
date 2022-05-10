@@ -7,7 +7,7 @@ ui <- fluidPage(
                       choices = list("General Search Trend" , "Classical Decomposition",
                                      "Seasonality", 'Autocorrelation', 'Forecast',
                                      'Naive Model', 'Mean Model', 'Drift Model', 'Seasonal Naive',
-                                     'Holts', 'Holts Winter'), 
+                                     'Holts', 'Holts Winter', 'Arima'), 
                       selected = "General Search Trend"),
           
         
